@@ -82,7 +82,7 @@ section {width:1000px;  margin:0 auto;}
     margin:0 10px 0 -24px;  padding-left:27px;
     background: url('../images/icon_chk_off.svg') no-repeat 0 3px; }
 .save-id input[type='checkbox']:not(old):checked + label{
-    background: url('../images/icon_chk_on.svg') no-repeat 0 3px; }
+    background: url('../images/bt-login-checkbox-on-pc.svg') no-repeat 0 0px; }
 .sect1 form button{width:100%; height:55px; background: #bdd61a; border:none;
   margin-top:16px; font-size: 18px; font-weight: 600;
 }
@@ -226,4 +226,14 @@ letter-spacing: -1.5px;  display: inline-block; height:26px; }
 .foot-addr span{ display: inline-block; margin-top:6px; padding-right:6px; }
 .foot-addr div a{font-size: 12px; font-weight: 400; padding-left:3px;}
 
+/* 게시판 리스트 부분 */
+.search{ width:331px; margin:0 auto;}
+.sect1 .search form{padding:0; margin:0; height:40px;}
 
+.sect1 .search select{ width:80px; height: 40px; padding:5px; 
+    font-size: 16px; border:1px solid #666;  }
+.sect1 .search input{ width: 200px; height:40px; padding:5px;
+    font-size: 16px; border:1px solid #666; }
+.sect1 .search button{width:40px; height:40px; background: #666; 
+    margin:0;
+    color:white; }
