@@ -141,7 +141,7 @@ section td button { width: 84px; height:34px; background: #6f6f6f;
 section td span{ font-size: 13px; color:#555; font-weight: 600; margin-top:5px; }
 .form-email td>input{width:134px;}
 .form-email td>input:nth-of-type(2){width:164px;}
-.form-email select{width:150px; height:34px;}
+.form-email select{width:150px; height:30px;}
 /* address 주소 */
 .form-address input[name='postZip']{width:120px;}
 .form-address input[name='addr1']{width:759px; margin-top:5px;}
