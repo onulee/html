@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <script>
+        $(function(){
+            $("li").click(function(){
+                //alert("경고");
+                console.log("this : ",this);
+                console.log("$this : ",$(this).text());
+                let txt = $(this);
+                $("li").each(function(){
+                    if(txt == $(this))
+                        console.log("each $(this) : ",$(this).text());
+                });
+            })
+        });
+    </script>
+</head>
+<body>
+    <ul>
+        <li>사과</li>
+        <li>배</li>
+        <li>바나나</li>
+    </ul>
+
+
+    
+</body>
+</html>
