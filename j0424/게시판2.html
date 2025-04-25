@@ -28,6 +28,7 @@
         let no = 1;
         let flag = 0;
         let boardNo = 0; //수정,삭제시 번호
+        let title,id,bdate,bhit; 
 
         $(function(){
            //1. 게시글 5개 리스트 출력함수
@@ -36,25 +37,23 @@
            // id 위치에서 키보드 이벤트
            $(document).on("keyup","#id",function(key){
             if(key.keyCode==13){ //enter키=13
-                let title = $("#title").val();
-                let id = $("#id").val();
-                //게시글 저장함수 호출
-                boardOne(title,id); 
+                title = $("#title").val();
+                id = $("#id").val();
+                if(flag==0) boardOne(); //게시글 저장함수 호출 
+                else boardOneUpdate();  //게시글 수정함수 호출
             }
            });
 
-           //2. 저장버튼 이벤트
+           //2. 저장버튼,수정저장버튼 이벤트
            $(document).on("click","#save",function(){
-            if(flag==0){ //게시글 저장버튼 클릭시
-                let title = $("#title").val();
-                let id = $("#id").val();
-                //게시글 저장함수 호출
-                boardOne(title,id); 
-            }else{
-                alert("수정저장버튼 클릭");
-                $("#save").text("게시글 저장");
-                flag = 0;
-            }
+            title = $("#title").val();
+            id = $("#id").val();
+            
+            if(flag==0) boardOne();  //게시글 저장함수 호출
+            else boardOneUpdate(); // 수정 함수호출  : boardNo,title,id,bdate,bhit
+            
+            $("#save").text("게시글 저장");
+            flag = 0;
            });//#save
 
            //3. 삭제버튼 이벤트
@@ -68,16 +67,28 @@
 
            //4. 수정버튼 이벤트 - 수정화면 이동
            $(document).on("click",".updateBtn",function(){
-            alert("수정버튼 클릭");
-            console.log($(this).closest("tr").attr("id"));
-            flag = 1;
-            $("#save").text("수정저장");
-            console.log("flag : ",flag); //수정버튼클릭시 수정저장이름변경
-           });
+            console.log($(this).closest("tr").children())
+            
+            boardNo = $(this).closest("tr").attr("id");
+            if(confirm(`${boardNo}번 게시글을 수정하시겠습니까?`)){
+                flag = 1;
+                $("#save").text("수정저장");
+                //수정시 데이터 변경할 변수들
+                let trtd = $(this).closest("tr").children();
+                title = trtd[1].innerText; //제목변수
+                id = trtd[2].innerText; //작성자변수
+                bdate = trtd[3].innerText; //작성일변수
+                bhit = trtd[4].innerText; //조회수변수
+                //input에 title,id의 글자 넣기
+                $("#title").val(title);
+                $("#id").val(id);
+            }//if
+           });//updateBtn
+
         });//jquery
         
         //게시글 1개 추가함수
-        function boardOne(title,id){
+        function boardOne(){
             let today = new Date(); //날짜객체선언
             hdata = ``; //초기화
             hdata += `<tr id="${no}">`;
@@ -98,6 +109,26 @@
             $("#id").val('');
             alert("게시글이 추가 되었습니다.");
         }//boardOne
+
+        //게시글 1개 수정함수
+        function boardOneUpdate(){
+            let today = new Date(); //날짜객체선언
+            hdata = ``; //초기화
+            hdata += `<td>${boardNo}</td>`;
+            hdata += `<td>${title}</td>`;
+            hdata += `<td>${id}</td>`;
+            hdata += `<td>${today.getFullYear()}-${(today.getMonth()+1)<10?"0"+(today.getMonth()+1):(today.getMonth()+1)}-${today.getDate()}</td>`;
+            hdata += `<td>${bhit}</td>`;
+            hdata += `<td>`;
+            hdata += `<button type="button" class="updateBtn">수정</button>`;
+            hdata += `<button type="button" class="deleteBtn">삭제</button>`;
+            hdata += `</td>`;
+            $(`#${boardNo}`).html(hdata); //게시글 1개 수정
+            //초기화
+            $("#title").val('');
+            $("#id").val('');
+            alert("게시글이 수정 되었습니다.");
+        }//boardOneUpdate
 
         //게시글 5개 리스트 출력함수
         function boardList(){
