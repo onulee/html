@@ -17,12 +17,15 @@
         // let idptn = /^[a-zA-Z]{1}[0-9]{2,8}$/;
         // let nameptn = /^[ㄱ-ㅎ가-힣]{3,}$/; //3자리이상 한글만 입력
         function cbtn(){
-            let n = $("#tel").val();
+            let n = $("#pw").val();
+
+            let pwptn = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_])[a-zA-Z0-9!@#$%^&*_]{3,}$/;
+            console.log("확인 : ",pwptn.test(n));
             
             // 첫글자는 영문으로 시작, 4-16자리 영문,숫자,특수기호_ 만 사용가능해서 구현하시오.
-            let idptn = /^[a-zA-Z]{1}[a-zA-Z0-9_]{3,15}$/;
-            let idptn2 = /^[a-zA-Z]{1}\w{3,15}$/;
-            console.log("확인 : ",idptn.test(n));
+            //let idptn = /^[a-zA-Z]{1}[a-zA-Z0-9_]{3,15}$/;
+            //let idptn2 = /^[a-zA-Z]{1}\w{3,15}$/;
+            //console.log("확인 : ",idptn.test(n));
 
 
 
@@ -64,8 +67,8 @@
     </script>
 </head>
 <body>
-    <label>아이디</label>
-    <input type="text" id="id"><br>
+    <label>비밀번호</label>
+    <input type="text" id="pw"><br>
     <button id="cbtn" onclick="cbtn()">확인</button>
     
 </body>

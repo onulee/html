@@ -5,26 +5,7 @@
 		<link rel="stylesheet" type="text/css" href="css/style_header.css">
 		<link rel="stylesheet" type="text/css" href="css/style_join01_terms.css">
 		<link rel="stylesheet" type="text/css" href="css/style_footer.css">
-		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<title>회원가입 - 약관동의</title>
-		<script>
-
-			function cbtn(){
-				if($("input[value=agree]:checked").length<3){
-					//alert("모두 동의를 하셔야 회원가입이 진행됩니다.");
-					if(confirm("모두 동의로 변경할까요?")){
-						$("input[value=agree]").each(function(){
-							this.checked = true;
-						});
-					}
-					return;
-				}
-				//submit전송
-				agree.submit();
-
-			}//cbtn
-
-		</script>
 	</head>
 	<body>
 		<header>
@@ -127,7 +108,7 @@
 					</article>
 				</div>
 				<div class="agreeRadio">
-					<input type="radio" name="f_agree" id="f_agree" value="agree"  />
+					<input type="radio" name="f_agree" id="f_agree" value="agree" />
 					<label for="f_agree">이용약관에 동의합니다.</label>
 					<input type="radio" name="f_agree" id="f_disagree" value="disagree" />
 					<label for="f_disagree">동의하지 않습니다.</label>
@@ -206,7 +187,7 @@
 				
 				<div id="terms_button">
 					<input type="reset" value="취소하기" />
-					<input type="button" onclick="cbtn()" value="가입하기" />
+					<input type="submit" value="가입하기" />
 				</div>
 				
 			</form>
