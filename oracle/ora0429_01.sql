@@ -422,9 +422,50 @@ desc stuscore; -- 컬럼 8개 : sno,name,kor,eng,math,total,avg,rank
 create table stuscore3 as select sno,name,kor,eng,math from stuscore;
 
 -- stuscore3 번호, 국어,영어,수학,합계,평균을 출력해보시오.
+-- 등수 출력하시오.
+select * from stuscore3;
+select sno,kor,eng,math,kor+eng+math,round((kor+eng+math)/3,3) from stuscore3;
+
+-- total컬럼을 추가 
+alter table stuscore3 add total number(3);
+
+desc stuscore3;
+
+-- avg컬럼을 추가
+alter table stuscore3 add avg number(5,2);
+
+desc stuscore3;
+
+-- rank컬럼을 추가
+alter table stuscore3 add rank number(3);
+
+select * from stuscore3;
 
 
 
+
+
+
+-- 2번째 avg()를 avg컬럼에 저장
+update stuscore3 set total = kor+eng+math;
+update stuscore3 set avg = (kor+eng+math)/3;
+
+-- 1번째 rank()를 rank컬럼에 저장
+update stuscore3 a
+set rank = (
+select ranks from (select sno,rank() over(order by total desc ) ranks from stuscore3) b
+where a.sno = b.sno
+)
+;
+select ranks from (select sno,rank() over(order by total desc ) ranks from stuscore3) b;
+select sno,rank() over(order by total desc ) ranks from stuscore3;
+
+-- sno 1,2,3,4
+select * from stuscore3;
+
+-- rank 등수 어떤 형태로 등수를 출력
+-- sno 96,23,3,22...
+select sno,rank() over(order by total desc ) from stuscore3;
 
 
 
