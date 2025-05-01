@@ -262,6 +262,22 @@ select * from employees order by employee_id desc;
 
 
 -- email E 또는 S 포함되어 있는 사원을 출력하시오.
+select email from employees;
+select email from employees 
+where email like '%E%' or email like '%S%' 
+order by email;
+
+select email from employees 
+where email like '%E%' and email like '%S%' 
+order by email desc;
+
+select * from stuscore;
+
+-- 2개 order by 정렬, 1차 우선 정렬후 같은 값일 경우, 2차 정렬방식을 적용 2차 값이 같을때 3차 정렬방식 적용
+select * from stuscore order by kor asc, eng desc, math desc;
+
+
+
 
 
 
