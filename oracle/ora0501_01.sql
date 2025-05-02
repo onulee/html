@@ -76,7 +76,7 @@ stuscore sno에서 짝수만 출력하시오.
 select * from stuscore where mod(sno,10)=0;
 
 
-시퀀스
+시퀀스 : 순차적인 생성
 select stu_seq.nextval from dual;
 
 select stu_seq.currval from dual;
