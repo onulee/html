@@ -487,5 +487,7 @@ drop view emp;
 
 select * from member;
 
+commit;
+
 
 
